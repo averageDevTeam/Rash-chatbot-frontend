@@ -1,0 +1,58 @@
+<div>
+  <!-- get department -->
+  <div *ngIf="step === 1">
+    <h3 >Please enter the department name or ID to proceed with booking:</h3>
+    <ol>
+      <li *ngFor="let department of departments">{{department.name}}</li>
+    </ol>
+  </div>
+  <!-- get doctor -->
+  <div *ngIf="step === 2">
+    <h3>You selected {{ selectedDepartment.name }}. Enter the doctor's name or ID:</h3>
+    <ol>
+      <li *ngFor="let doctor of doctors">{{doctor.name}}</li>
+    </ol>
+  </div>
+  <!-- get date -->
+   <div *ngIf="step === 3">
+    <h3>You selected Dr. {{ selectedDoctor.name }}. Enter choose Prefered slot</h3>
+      <input type="date" [(ngModel)]="selectedDate" name="date" required>
+   </div>
+   <!-- get slots -->
+    <div *ngIf="step === 4">
+      <h3>You selected {{ selectedDate }}. Enter choose Prefered slot</h3>
+      <ol>
+        <li *ngFor = "let slot of timeSlots">{{ slot }}</li>
+      </ol>
+    </div>
+
+    
+  
+  <!-- <h3 >You selected Dr. {{ selectedDoctor.name }}. Enter your preferred time slot:</h3> -->
+  <h3 *ngIf="step === 5">Please enter your name:</h3>
+  <h3 *ngIf="step === 6">Please enter your phone number:</h3>
+  <h3 *ngIf="step === 7">Please enter your email address:</h3>
+
+  <div *ngIf="step === 8">
+    <p>Mr./Mrs. {{appointmentInfo.name}} Your appointment request with {{selectedDoctor.name}} on {{selectedDate}} at {{selectedTimeSlot}} is booked</p>
+  </div>
+
+  <div *ngIf="step === 9">
+    <p>Name : {{appointmentInfo.name}}</p>
+    <p>Phone Number : {{appointmentInfo.phone}}</p>
+    <p>Email : {{appointmentInfo}}</p>
+    <p>Department : {{selectedDepartment.name}}</p>
+    <p>Doctor : {{selectedDoctor.name}}</p>
+    <p>Date : {{selectedDate}}</p>
+    <p>Slot : {{timeSlots}}</p>
+  </div>
+
+  <div *ngIf="step < 9">
+    <input type="text" [(ngModel)]="userInput" placeholder="Type your response here" />
+    <button (click)="processInput()">Submit</button>
+  </div>
+</div>
+
+
+
+

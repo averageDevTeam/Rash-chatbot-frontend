@@ -1,0 +1,22 @@
+.red{
+    color: red;
+}
+
+.big{
+    font-size: 24px;
+    font-weight: bolder;
+}
+
+.medium {
+    font-size: 20px;
+    font-weight: bold
+}
+
+.small{
+    font-size: 16px;
+    font-weight: medium;
+}
+
+.font{
+    font-family: sans-serif
+}

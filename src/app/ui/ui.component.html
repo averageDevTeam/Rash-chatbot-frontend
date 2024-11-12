@@ -1,0 +1,57 @@
+<div class="root_container">
+    <div class="chatbot_container">
+        <div class="header">
+            <div class="logo">
+                <!-- <img src="../../assets/logo.svg" alt=""> -->
+                <p class="h_name">Rashtrotthanahospital Bot</p>
+            </div>
+            <div class="cancel_button">
+                <i class="fa-solid fa-rotate-right"></i>
+                <i class="fa-solid fa-x"></i>
+            </div>
+        </div>
+
+        <div class="body">
+            <div class="body_wrapper" #bodyWrapper>
+                <div class="bot_response" *ngFor="let response of responseStructure">
+                    <div class="user_input"*ngIf="response.heading || response.option.length">
+                        <p class="bgboxuser response_options" *ngIf="step >= 1">{{response.input}}</p>
+                        <!-- <img src="../../assets/user.svg" alt="" *ngIf="step >= 1"> -->
+                    </div>
+                    <div class="botresponse" *ngIf="response.heading || response.option.length">
+                        <div class="responseLogo">
+                            <!-- <img src="../../assets/logo.svg" alt="">   -->
+                        </div>
+                        <div class="response_txt">  
+                            <p class="response_heading boxuser">{{response.heading}}</p>
+                            <p *ngFor="let option of response.option; let i = index" class="response_options" >{{i + 1}}. {{option}}</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Date input field, displayed only when step is 3 -->
+                <div class="dateinput" [ngClass]="{ 'hidden': step !== 3 }">
+                    <input type="date" [(ngModel)]="date" class="inputdate">
+                </div>
+
+                <div class="file_input" [ngClass]="{ 'hidden': step !== 13 }">
+                    <input type="file" class="inputdate" [(ngModel)] = "selectedfile" (change)="this.getImage($event)">
+                </div>
+            </div>
+
+            <!-- input field -->
+            <div class="input">
+                <input type="text" [(ngModel)]="userInput" placeholder="Enter 1 to book an appoint..." (keyup.enter)="buttonHandler()" [disabled]="isProcessing">
+                <button class="send_button" (click)="buttonHandler()" [disabled]="isProcessing"><img src="../../assets/send.svg" alt=""></button>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<div>
+    {{this.selectedfile}}
+</div>
+
+<div>
+    {{this.selectedDoorservice}}
+</div>
